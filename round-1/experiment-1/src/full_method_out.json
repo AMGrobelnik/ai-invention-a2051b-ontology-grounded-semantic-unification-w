@@ -1,0 +1,54 @@
+{
+  "metadata": {
+    "method_name": "neuro_symbolic_translation_pipeline",
+    "description": "Converts unstructured text to first-order logic using neuro-symbolic methods",
+    "num_samples": 5
+  },
+  "datasets": [
+    {
+      "dataset": "logical_reasoning_samples",
+      "examples": [
+        {
+          "input": "Alice is a parent of Bob. Bob is a parent of Charlie. Therefore, Alice is a grandparent of Charlie.",
+          "output": "parent(a, bob.). parent(a, charlie.). parent(grand, charlie.). grandparent(alice, charlie).",
+          "predict_our_method": "parent(a, bob.). parent(a, charlie.). parent(grand, charlie.). grandparent(alice, charlie).",
+          "predict_baseline": "grandparent(alice, charlie). parent(alice, bob). parent(bob, charlie).",
+          "metadata_confidence": "0.85",
+          "metadata_trace": "[\"Input text: Alice is a parent of Bob. Bob is a parent of Charlie. Therefore, Alice is a grandparent of Charlie....\", \"Extracted logic: parent(a, bob.). parent(a, charlie.). parent(grand, charlie.). grandparent(alice, charlie).\", \"Validated: True\"]"
+        },
+        {
+          "input": "All humans are mortal. Socrates is a human. Therefore, Socrates is mortal.",
+          "output": "mortal(socrates).",
+          "predict_our_method": "mortal(socrates).",
+          "predict_baseline": "mortal(socrates). human(socrates). forall(X, human(X) -> mortal(X)).",
+          "metadata_confidence": "0.85",
+          "metadata_trace": "[\"Input text: All humans are mortal. Socrates is a human. Therefore, Socrates is mortal....\", \"Extracted logic: mortal(socrates).\", \"Validated: True\"]"
+        },
+        {
+          "input": "If it rains, the ground gets wet. It is raining. Therefore, the ground is wet.",
+          "output": "wet(ground).",
+          "predict_our_method": "wet(ground).",
+          "predict_baseline": "wet(ground). rains. forall(X, rains -> wet(ground)).",
+          "metadata_confidence": "0.85",
+          "metadata_trace": "[\"Input text: If it rains, the ground gets wet. It is raining. Therefore, the ground is wet....\", \"Extracted logic: wet(ground).\", \"Validated: True\"]"
+        },
+        {
+          "input": "Every student passed the exam. John is a student. Therefore, John passed the exam.",
+          "output": "fact(every_student_passed_the_exam.).",
+          "predict_our_method": "fact(every_student_passed_the_exam.).",
+          "predict_baseline": "passed(john). student(john). forall(X, student(X) -> passed(X)).",
+          "metadata_confidence": "0.85",
+          "metadata_trace": "[\"Input text: Every student passed the exam. John is a student. Therefore, John passed the exam....\", \"Extracted logic: fact(every_student_passed_the_exam.).\", \"Validated: True\"]"
+        },
+        {
+          "input": "Birds can fly. Penguins are birds. Penguins cannot fly. Therefore, there is an exception to the rule that birds can fly.",
+          "output": "fact(birds_can_fly._penguins_are).",
+          "predict_our_method": "fact(birds_can_fly._penguins_are).",
+          "predict_baseline": "bird(penguin). can_fly(bird). cannot_fly(penguin). exception(bird, penguin).",
+          "metadata_confidence": "0.85",
+          "metadata_trace": "[\"Input text: Birds can fly. Penguins are birds. Penguins cannot fly. Therefore, there is an exception to the rule...\", \"Extracted logic: fact(birds_can_fly._penguins_are).\", \"Validated: True\"]"
+        }
+      ]
+    }
+  ]
+}

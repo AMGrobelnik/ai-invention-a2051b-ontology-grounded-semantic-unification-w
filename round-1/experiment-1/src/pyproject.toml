@@ -1,0 +1,15 @@
+[project]
+name = "neuro-symbolic-translation-pipeline"
+version = "0.1.0"
+description = "Neuro-symbolic pipeline for converting text to first-order logic"
+requires-python = ">=3.10"
+dependencies = [
+    "loguru==0.7.3",
+    "json-repair==0.60.1",
+    "orjson==3.11.9",
+    "pydantic==2.13.4",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
