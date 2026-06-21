@@ -1,0 +1,26 @@
+{
+  "metadata": {
+    "method_name": "neuro_symbolic_translation_pipeline",
+    "description": "Converts unstructured text to first-order logic using neuro-symbolic methods",
+    "num_samples": 3
+  },
+  "datasets": [
+    {
+      "dataset": "logical_reasoning_samples",
+      "examples": [
+        {
+          "input": "Alice is a parent of Bob. Bob is a parent of Charlie. Therefore, Alice is a grandparent of Charlie.",
+          "output": "grandparent(alice, charlie). parent(alice, bob). parent(bob, charlie)."
+        },
+        {
+          "input": "All humans are mortal. Socrates is a human. Therefore, Socrates is mortal.",
+          "output": "mortal(socrates). human(socrates). forall(X, human(X) -> mortal(X))."
+        },
+        {
+          "input": "If it rains, the ground gets wet. It is raining. Therefore, the ground is wet.",
+          "output": "wet(ground). rains. forall(X, rains -> wet(ground))."
+        }
+      ]
+    }
+  ]
+}
